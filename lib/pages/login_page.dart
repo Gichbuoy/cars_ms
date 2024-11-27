@@ -1,8 +1,8 @@
 import 'package:cars_ms/components/my_button.dart';
 import 'package:cars_ms/components/my_textfield.dart';
+import 'package:cars_ms/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -19,18 +19,33 @@ class _LoginPageState extends State<LoginPage>{
   final TextEditingController passwordController = TextEditingController();
 
   // login method validation
-  void login(){
-    /*
-    *  fill out authentication here
-    *
-    */
+  void login() async {
+    // get instance of auth
+    final _authService = AuthService();
+    
+    // try sign in
+    try {
+      await _authService.signInWithEmailPassword(emailController.text, passwordController.text);
+    }
+    // display any errors
+    catch (e){
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          ),
+      );
+    }
+  }
 
-    // navigate to home page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage(),
-      ),
+  // forgot password
+  void forgotPw(){
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          title: const Text("User tapped forgot password."),
+        ),
     );
   }
 

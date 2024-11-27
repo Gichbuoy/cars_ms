@@ -1,4 +1,6 @@
+import 'package:cars_ms/models/insurance_options.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyCurrentLocation extends StatelessWidget {
   const MyCurrentLocation({super.key});
@@ -9,18 +11,26 @@ class MyCurrentLocation extends StatelessWidget {
         builder: (context) => AlertDialog(
           title: const Text("Your Location"),
           content: const TextField(
-            decoration: InputDecoration(hintText: "Search Address..."),
+            decoration: InputDecoration(hintText: "Enter  Address..."),
           ),
           actions: [
             // cancel button
             MaterialButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: const Text('Cancel'),
             ),
 
             // save button
             MaterialButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                // update delivery address
+                // String newAddress = textController.text;
+                // context.read<InsuranceOptions>().updateDeliveryAddress(newAddress);
+                Navigator.pop(context);
+                // textController.clear();
+              },
               child: const Text('Save'),
             ),
           ],
@@ -44,16 +54,21 @@ class MyCurrentLocation extends StatelessWidget {
             child: Row(
               children: [
                 // address
-                Text(
-                  "0100 Nairobi",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Consumer<InsuranceOptions>(
+                    builder: (context, insuranceOptions, child) => Text(
+                      insuranceOptions.deliveryAddress,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                 ),
 
                 // dropdown menu
-                Icon(Icons.keyboard_arrow_down_rounded),
+                Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
               ],
             ),
           )

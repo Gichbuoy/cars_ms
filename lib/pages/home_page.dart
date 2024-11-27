@@ -1,6 +1,7 @@
 import 'package:cars_ms/components/my_insurance_tile.dart';
 import 'package:cars_ms/models/insurance.dart';
 import 'package:cars_ms/models/insurance_options.dart';
+import 'package:cars_ms/pages/insurance_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cars_ms/components/my_current_location.dart';
 import 'package:cars_ms/components/my_description_box.dart';
@@ -56,7 +57,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             // return insurance tile UI
             return InsuranceTile(
                 insurance: insurance,
-                onTap: () {},
+                onTap: () => Navigator.push(
+                    context,
+                  MaterialPageRoute(
+                      builder: (context) => InsurancePage(insurance: insurance),
+                  ),
+                ),
             );
           },
       );

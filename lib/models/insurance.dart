@@ -3,7 +3,7 @@ class Insurance {
   final String name;
   final String description;
   final String imagePath;
-  final String price;
+  final double price;
   final InsuranceCategory category;
   List<Addon> availableAddons;
 

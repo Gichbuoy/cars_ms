@@ -45,6 +45,8 @@ class InsuranceTile extends StatelessWidget {
                     )
                 ),
 
+                const SizedBox(width: 15),
+
                 // Insurance Image
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
@@ -53,7 +55,14 @@ class InsuranceTile extends StatelessWidget {
               ],
             ),
           )
-        )
+        ),
+
+        // divider
+        Divider(
+          color: Theme.of(context).colorScheme.tertiary,
+          endIndent: 25,
+          indent: 25,
+        ),
       ],
     );
   }

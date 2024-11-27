@@ -1,9 +1,15 @@
 import 'package:cars_ms/components/my_drawer_tile.dart';
 import 'package:cars_ms/pages/settings_page.dart';
+import 'package:cars_ms/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
+
+  void logout(){
+    final authService = AuthService();
+    authService.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
